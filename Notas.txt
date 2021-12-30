@@ -1,0 +1,17 @@
+Para probar el server.php
+
+- En una terminal correr:
+  php -S localhost:8000 0x01-exponer-datos-by-HTTP-GET/server.php
+
+- En otra terminal realizamos la peticion:
+La flag "-v" es para ver la comunicacion entre los headers.
+   curl http://localhost:8000?resource_type=books -v
+
+Para ver solo la respuesta, coamndo sin flag
+   curl http://localhost:8000?resource_type=books
+
+Para ver solo los headers agrego > /dev/null
+curl http://localhost:8000?resource_type=books -v > /dev/null
+
+Para ver el json mas ordenado usar la herramienta "jq"
+

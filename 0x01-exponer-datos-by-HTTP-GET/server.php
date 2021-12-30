@@ -1,6 +1,6 @@
 <?php
 
-// Defino los recursos que serán posibles
+// Defino los recursos disponibles
 $allowedResourceTypes = [
   'books',
   'authors',
@@ -11,6 +11,28 @@ $allowedResourceTypes = [
 
 $resourceType = $_GET['resource_type'];
 
+// Defino los recursos
+$books = [
+  1 => [
+    'titulo' => 'Lo que el viento se llevó',
+    'id_autor' => 2,
+    'id_genero' => 2,
+  ],
+  2 => [
+    'titulo' => 'La Iliada',
+    'id_autor' => 1,
+    'id_genero' => 1,
+  ],
+  1 => [
+    'titulo' => 'La Odisea',
+    'id_autor' => 2,
+    'id_genero' => 2,
+  ],
+];
+
+// avisar al cliente que la respuesta la envío en un json
+header( 'Content-Type: application/json');
+
 // si resourcetype no pertenece al arreglo allowed...
 if (!in_array( $resourceType, $allowedResourceTypes ) ) {
   die;
@@ -18,6 +40,7 @@ if (!in_array( $resourceType, $allowedResourceTypes ) ) {
 
 switch ( strtoupper($_SERVER['REQUEST_METHOD']) ) {
   case 'GET':
+    echo json_encode( $books );
     break;
   case 'POST':
     break;
