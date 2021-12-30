@@ -1,5 +1,8 @@
 <?php
 
+// avisar al cliente que la respuesta la envío en un json
+header( 'Content-Type: application/json');
+
 // Defino los recursos disponibles
 $allowedResourceTypes = [
   'books',
@@ -8,8 +11,12 @@ $allowedResourceTypes = [
 ];
 
 // Validar si el tipo de recurso que me están solicitando está disponible o dentro del arreglo de recursos posibles
-
 $resourceType = $_GET['resource_type'];
+
+// si resourcetype no pertenece al arreglo allowed...
+if (!in_array( $resourceType, $allowedResourceTypes ) ) {
+  die;
+}
 
 // Defino los recursos
 $books = [
@@ -30,17 +37,21 @@ $books = [
   ],
 ];
 
-// avisar al cliente que la respuesta la envío en un json
-header( 'Content-Type: application/json');
+//  Levantamos el id del recurso buscado
+$resourceId = array_key_exists('resource_id', $_GET) ? $_GET['resource_id'] : '';
 
-// si resourcetype no pertenece al arreglo allowed...
-if (!in_array( $resourceType, $allowedResourceTypes ) ) {
-  die;
-}
 
 switch ( strtoupper($_SERVER['REQUEST_METHOD']) ) {
   case 'GET':
-    echo json_encode( $books );
+    if( empty( $resourceId)) {
+      echo json_encode( $books );
+    } else {
+      // si el resourceId existe dentro de el arreglo books, entonces...
+      if (array_key_exists($resourceId, $books) ) {
+        echo json_encode ( $books[$resourceId] );
+      }
+    }
+    
     break;
   case 'POST':
     break;
