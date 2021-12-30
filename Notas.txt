@@ -22,5 +22,8 @@ De manera ordenada agrego el jq
   curl "http://localhost:8000?resource_type=books&resource_id=1" | jq
 
 ======= POST ========
-Para hacer un post
+Para hacer un post, el "-X" informa que es un post
 curl -X 'POST' http://localhost:8000?resource_type=books -d '{ "titulo": "Nuevo Libro", "id_autor": 1, "id_genero": 2 }'
+
+======= PUT ========
+curl -X 'PUT' http://localhost:8000?resource_type=books&resource_id=1 -d '{ "titulo": "Nuevo 1", "id_autor": 1, "id_genero": 2 }'

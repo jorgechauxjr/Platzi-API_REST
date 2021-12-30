@@ -63,6 +63,15 @@ switch ( strtoupper($_SERVER['REQUEST_METHOD']) ) {
     echo json_encode($books);
     break;
   case 'PUT':
+    // Validamos que el recurso buscado exista
+    if ( !empty($resourceId) && array_key_exists( $resourceId, $books ) ) {
+			// Tomamos la entrada cruda
+      $json = file_get_contents( 'php://input' );
+			
+			$books[ $resourceId ] = json_decode( $json, true );
+      // retornamos la coleccion modifiada en formato json
+			echo $resourceId;
+		}
     break;
   case 'DELETE':
     break;
