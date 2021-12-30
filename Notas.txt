@@ -27,3 +27,6 @@ curl -X 'POST' http://localhost:8000?resource_type=books -d '{ "titulo": "Nuevo 
 
 ======= PUT ========
 curl -X 'PUT' http://localhost:8000?resource_type=books&resource_id=1 -d '{ "titulo": "Nuevo 1", "id_autor": 1, "id_genero": 2 }'
+
+======= DELETE ========
+curl -X 'DELETE' http://localhost:8000?resource_type=books&resource_id=1

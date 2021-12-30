@@ -74,5 +74,20 @@ switch ( strtoupper($_SERVER['REQUEST_METHOD']) ) {
 		}
     break;
   case 'DELETE':
+    // validamos que el recurso exista
+    if ( !empty($resourceId) && array_key_exists( $resourceId, $books ) ) {
+      // eliminamos el recurso
+			unset( $books[ $resourceId ] );
+		}
+		break;
+	default:
+		http_response_code( 404 );
+
+		echo json_encode(
+			[
+				'error' => $method.' not yet implemented :(',
+			]
+		);
+    
     break;
 }
