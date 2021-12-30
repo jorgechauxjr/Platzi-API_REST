@@ -15,3 +15,7 @@ curl http://localhost:8000?resource_type=books -v > /dev/null
 
 Para ver el json mas ordenado usar la herramienta "jq"
 
+Para probar obtener un libro por id:
+  curl "http://localhost:8000?resource_type=books&resource_id=1"
+De manera ordenada agrego el jq
+  curl "http://localhost:8000?resource_type=books&resource_id=1" | jq
