@@ -3,6 +3,7 @@ Para probar el server.php
 - En una terminal correr:
   php -S localhost:8000 0x01-exponer-datos-by-HTTP-GET/server.php
 
+====== GET =======
 - En otra terminal realizamos la peticion:
 La flag "-v" es para ver la comunicacion entre los headers.
    curl http://localhost:8000?resource_type=books -v
@@ -19,3 +20,7 @@ Para probar obtener un libro por id:
   curl "http://localhost:8000?resource_type=books&resource_id=1"
 De manera ordenada agrego el jq
   curl "http://localhost:8000?resource_type=books&resource_id=1" | jq
+
+======= POST ========
+Para hacer un post
+curl -X 'POST' http://localhost:8000?resource_type=books -d '{ "titulo": "Nuevo Libro", "id_autor": 1, "id_genero": 2 }'
